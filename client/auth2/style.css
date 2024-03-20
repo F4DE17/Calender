@@ -1,0 +1,159 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
+
+
+:root {
+    /* Colors */
+    /* Theme colors */
+    --theme1: rgb(252, 80, 194);
+    --theme2: rgb(253, 38, 67);
+
+    /* Light theme */
+    --primary: #ffffff;
+    --accent: #3880DE;
+
+    --background: var(--primary);
+
+    --border: #E1E1E1;
+
+    --text: #202020;
+    --text-contrast: var(var(--primary));
+    --text-special: var(--accent);
+
+    /* Dark theme */
+    /* --primary: #1a1a1a;
+    --accent: #3880DE;
+
+    --border: #E1E1E1;
+
+    --text: #eeeeee;
+    --text-contrast: var(var(--primary));
+    --text-special: var(--accent); */
+}
+
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0px;
+
+    background-color: var(--background);
+
+    font-family: Poppins;
+
+    height: 100vh;
+}
+
+
+#wrapper {
+    position: relative;
+
+    max-width: 500px;
+    width: 50%;
+    min-height: 400px;
+
+    padding: 20px;
+
+    border-radius: 8px;
+    border: 2px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+
+    transition: transform 1s;
+}
+#wrapper #identification #logo {
+    background: linear-gradient(to bottom, var(--theme1) 0%, var(--theme2) 100%);
+    background-clip: text;
+    color: transparent;
+
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+#wrapper #identification #sign-in-info{
+    text-align: center;
+}
+#wrapper #identification #sign-in-info h2{
+    margin: 10px;
+}
+#wrapper #identification #sign-in-info p{
+    margin: 5px;
+}
+#wrapper #input {
+    max-width: 350px;
+    width: 100%;
+    color: var(--accent);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#wrapper #input div {
+    width: 100%;
+}
+#wrapper #input p {
+    background-color: var(--primary);
+    position: relative;
+    top: 15px;
+    left: 10px;
+    display: inline;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#wrapper #input a {
+    text-decoration: none;
+    color: var(--accent);
+    margin-top: 10px;
+}
+#wrapper #input input {
+    border: 2px solid var(--accent);
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1rem;
+    display: block;
+
+    width: 92%;
+}
+#wrapper #input input:on-in {
+    border: 2px solid var(--accent);
+}
+#wrapper #options {
+    justify-self: last baseline;
+    display: flex;
+    justify-content: space-between;
+
+    width: 70%;
+    position: absolute;
+    bottom: 10%;
+}
+#wrapper #options a {
+    text-decoration: none;
+    color: var(--accent);
+
+}
+
+#wrapper #options button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: var(--accent);
+    color: var(--primary);
+    border: none;
+    border-radius: 5px;
+}
+
+
+@keyframes switch-wrapper {
+    0% {
+        transform: rotateY(0);
+    }
+    100%{
+        transform: rotateY(360deg);
+    }
+}
