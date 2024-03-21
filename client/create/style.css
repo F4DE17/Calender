@@ -51,7 +51,7 @@ body {
 
     max-width: 500px;
     width: 50%;
-    min-height: 400px;
+    min-height: 600px;
 
     padding: 20px;
 
@@ -90,12 +90,23 @@ body {
     color: var(--accent);
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
 }
-#wrapper #input div {
+#wrapper #input #name {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+#wrapper #input div {
+ width: 100%;
+}
+#wrapper #input #name input{
+    width: 80%;
+    display: flex;
 }
 #wrapper #input p {
     background-color: var(--primary);
@@ -125,7 +136,7 @@ body {
     font-size: 1rem;
     display: block;
 
-    width: 92%;
+    width: 90%;
 }
 #wrapper #input input:on-in {
     border: 2px solid var(--accent);
@@ -137,12 +148,20 @@ body {
 
     width: 70%;
     position: absolute;
-    bottom: 10%;
+    bottom: 20px;
+}
+#wrapper #options p {
+    visibility: hidden;
+    display: inline;
+    margin: auto;
+    margin-right: 20px;
+
+    color: red;
 }
 #wrapper #options a {
     text-decoration: none;
     color: var(--accent);
-
+    margin: auto;
 }
 
 #wrapper #options button {

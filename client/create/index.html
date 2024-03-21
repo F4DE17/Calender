@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="icon" type="image/x-icon" href="../assets/calender.ico">
+
+    <link rel="stylesheet" href="style.css">
+    <script defer src="../global.js"></script>
+    <script defer src="index.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="identification">
+            <h1 id="logo">Calender</h1>
+            <div id="sign-in-info">
+                <h2>Create Account</h2>
+                <p>to continue to Calender</p>
+            </div>
+        </div>
+        <div id="input">
+            <!-- wrap all of this in form? -->
+            <form action="create-account">
+                <div>
+                    <p>Email</p>
+                    <input type="text" id="email">
+                </div>
+                <div id="name">
+                    <div>
+                        <p>First Name</p>
+                        <input type="text" id="firstname">
+                    </div>
+                    <div>
+                        <p>Last Name</p>
+                        <input type="text" id="lastname">
+                    </div>
+                </div>
+                <div>
+                    <p>Password</p>
+                    <input type="password" id="password">
+                </div>
+                <div>
+                    <p>Birthday</p>
+                    <input type="date" id="birthday">
+                </div>
+            </form>
+        </div>
+        <div id="options">
+            <a href="">Create account</a>
+            <p class="invalid">Invalid information</p>
+            <button onclick="createAccount()">Next</button>
+        </div>
+    </div>
+</body>
+</html>

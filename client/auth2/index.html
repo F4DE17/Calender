@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="../assets/calender.ico">
     <link rel="stylesheet" href="style.css">
     <script defer src="../global.js"></script>
     <script defer src="index.js"></script>
@@ -23,11 +24,12 @@
                 <p id="email-phone">Email or username</p>
                 <input type="text">
                 <a href="">Forgot email?</a>
+                <p id="incorrect">Invalid information</p>
             </div>
         </div>
         <div id="options">
-            <a href="">Create account</a>
-            <button onclick="submit()">Next</button>
+            <a href="../create/">Create account</a>
+            <button onclick="username()">Next</button>
         </div>
     </div>
 </body>

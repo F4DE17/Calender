@@ -9,6 +9,7 @@
   "author": "Zane",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.19.0",
     "mysql": "^2.18.1"
   }
 }
