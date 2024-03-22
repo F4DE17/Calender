@@ -13,10 +13,10 @@ const log = console.log
 
 // Connect with database
 
-let { query } = require("./database.js")
+let { DB } = require("./database.js")
 
 async function queryUsers() {
-    let result = await query("user")
+    let result = await DB.query("user")
 
     console.log(result)
 }
@@ -42,33 +42,17 @@ app.use(express.static("../client"))
 app.use(express.json())
 
 
-// Handle http requests / routes with CRUD
+// Command handle http requests / routes with CRUD
 
-
+const create = require("./requests/create.js")
 const read = require("./requests/read.js")
+const update = require("./requests/update.js")
+const del = require("./requests/delete.js")
 
+app.post("/read", read.execute)
 
-app.post("/read", async (request, response) => {
-    let data = request.body
+app.post("/create", create.execute)
 
-    read.execute({request, response}, data);
+app.post("/update", update.execute)
 
-})
-
-
-// Encryption
-
-const { generateKeyPairSync } = require("crypto")
-
-const { privateKey, publicKey } = generateKeyPairSync('rsa', {
-    modulusLength: 2048,
-    publicKeyEncoding: {
-        type: 'spki',
-        format: 'pem'
-    },
-    privateKeyEncoding: {
-        type: 'pkcs8',
-        format: 'pem'
-    }
-})
-
+app.post("/delete", del.execute)

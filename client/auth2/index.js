@@ -13,6 +13,8 @@ async function password() {
         // We are logged in!
         // Make a cute sign in animation <3
 
+        // Create some state-management login system
+
         // Forward to the calender
         document.location = "../calender"
     }

@@ -1,75 +1,107 @@
-
 -- @block
-CREATE TABLE event(
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    calender_id BIGINT NOT NULL,
-    user_id BIGINT NOT NULL,
-    name LONGTEXT NOT NULL,
-    description LONGTEXT NOT NULL,
-    date DATE NOT NULL,
-    remind TINYINT(1) NOT NULL,
-    created_at DATETIME NOT NULL,
-    birthday TINYINT(1) NOT NULL
+
+-- CALENDER TABLES
+
+CREATE TABLE `Groups` (
+    `id` INT AUTO_INCREMENT,
+    `name` TEXT NOT NULL,
+    `description` TEXT,
+
+    PRIMARY KEY(`id`)
+);
+
+CREATE TABLE `Users`(
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+
+    `email` VARCHAR(255) UNIQUE NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+
+    `firstname` VARCHAR(255) NOT NULL,
+    `lastname` VARCHAR(255) NOT NULL,
+
+    `group_id` BIGINT NOT NULL,
+
+    `premium` TINYINT(1) NOT NULL DEFAULT 0,
+    `birthday` DATE NULL,
+
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Calenders` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `user_id` BIGINT NOT NULL,
+    
+    PRIMARY KEY (id),
+);
+
+CREATE TABLE `Events` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `calender_id` BIGINT NOT NULL,
+    `user_id` BIGINT NOT NULL,
+    `name` TEXT NOT NULL,
+    `description` TEXT,
+    `date` DATE NOT NULL,
+    `remind` TINYINT(1) NOT NULL DEFAULT 0,
+    `created_at` BIGINT,
+    `birthday` TINYINT(1) NOT NULL DEFAULT 0,
+
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`calender_id`) REFERENCES `Calenders`(`id`),
+    FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`)
+);
+
+CREATE TABLE `Shared_Events` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `calender_id` BIGINT NOT NULL,
+    `event_id` BIGINT NOT NULL,
+    `orgin_user_id` BIGINT NOT NULL,
+    `shared_date` DATE NOT NULL,
+
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`calender_id`) REFERENCES `Calenders`(`id`),
+    FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`)
 );
 
 -- @block
-CREATE TABLE shared_event(
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    calender_id BIGINT NOT NULL,
-    event_id BIGINT NOT NULL,
-    orgin_user_id BIGINT NOT NULL
+
+-- PERMISSIONS TABLES
+
+CREATE TABLE `Authorization_Levels` (
+    `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `name` VARCHAR(60) NOT NULL,
+    `hash` TEXT
 );
 
--- @block
-CREATE TABLE calender(
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT NOT NULL
+CREATE TABLE `Permissions` (
+    `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `auth_id` INT NOT NULL,
+    `table` TEXT NOT NULL,
+    `columns` TEXT NOT NULL,
+    `rows` TEXT NOT NULL,
+
+    FOREIGN KEY (`auth_id`) REFERENCES `Authorization_Levels`(`id`)
 );
 
+-- SCRIPT AREA
 -- @block
-CREATE TABLE user(
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    email LONGTEXT NOT NULL,
-    password LONGTEXT NOT NULL,
-    group_id BIGINT NULL,
-    premium TINYINT(1) NOT NULL,
-    birthday DATE NULL
-);
-
--- @block
-CREATE TABLE group(
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name LONGTEXT NOT NULL,
-    description LONGTEXT NOT NULL
-);
-
-
--- @block
-ALTER TABLE
-    calender ADD CONSTRAINT calender_user_id_foreign FOREIGN KEY(user_id) REFERENCES user(id);
-ALTER TABLE
-    shared_event ADD CONSTRAINT shared_event_orgin_user_id_foreign FOREIGN KEY(orgin_user_id) REFERENCES event(user_id);
-ALTER TABLE
-    event ADD CONSTRAINT event_calender_id_foreign FOREIGN KEY(calender_id) REFERENCES calender(id);
-ALTER TABLE
-    shared_event ADD CONSTRAINT shared_event_event_id_foreign FOREIGN KEY(event_id) REFERENCES event(id);
-ALTER TABLE
-    shared_event ADD CONSTRAINT shared_event_calender_id_foreign FOREIGN KEY(calender_id) REFERENCES calender(id);
-ALTER TABLE
-    user ADD CONSTRAINT user_group_id_foreign FOREIGN KEY(group_id) REFERENCES group(id);
-ALTER TABLE
-    calender ADD CONSTRAINT calender_user_id_foreign FOREIGN KEY(user_id) REFERENCES event(user_id);
-
--- @block
-INSERT INTO user (email, password, premium)
+SELECT * FROM authorization_levels;
+-- @block 
+INSERT INTO `Permissions` (`auth_id`, `table`, `columns`, `rows`)
 VALUES
-    ("abc@gmail.com", "abc!", true),
-    ("bcd@gmail.com", "bcd!", false);
+(3, "Groups", "name, description", "own"),
+(3, "Users", "email, password, firstname, lastname, group_id, birthday", "own"),
+(3, "Events", "name, description, date, remind, birthday", "own");
 
 -- @block
-SELECT * FROM user;
-
--- UPDATE user SET email = "abc@test.com" WHERE premium = true;
+SELECT * FROM permissions AS p
+JOIN authorization_levels AS a ON a.id = p.auth_id
+HAVING p.table = "Groups";
 
 -- @block
-SELECT * FROM user WHERE email = "abc@test.com";
+INSERT INTO Users (email, password, firstname, lastname, group_id, premium)
+VALUE ("z", "z", "z", "z", 1, 1);
+-- @block
+INSERT INTO Calenders (user_id)
+VALUE (1)
+-- @block
+SELECT * FROM permissions WHERE permissions.table = "Groups";

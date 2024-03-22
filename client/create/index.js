@@ -1,24 +1,3 @@
-var email;
-
-async function password() {
-    let input = document.querySelector("#input > div > input[type=text]");
-    console.log(input.value)
-    // Make sure the password is correct
-    // Send request to the server to check if username is valid
-    let data = await post("/read", {event: "authorize", values: {password: input.value, email: email}});
-    log(data)
-    if(data?.status === 404) {
-        q("#incorrect").style.display = "unset";
-    }else {
-        // We are logged in!
-        // Make a cute sign in animation <3
-
-        // Forward to the calender
-        document.location = "../calender"
-    }
-}
-
-
 async function createAccount() {
     // Get all inputs
 
@@ -27,7 +6,7 @@ async function createAccount() {
     let firstname = q("#firstname").value
     let lastname = q("#lastname").value
     let password = q("#password").value
-    let birthday = q("#birthday").value
+    let birthday = q("#birthday").value || "null"
 
     // Check to make sure all values are filled out except bday
     if(!email || !firstname || !lastname || !password) {
@@ -36,15 +15,17 @@ async function createAccount() {
         return;
     }
 
+    // create({table: })
+    // Send data to the server to create our new account
+    let data = await post("/create", {event: "account", values: {email, firstname, lastname, password, birthday}})
+    console.log(data);
 
-    // If it is a success the account will be returned and we will be logged in
-    if(data?.status === 404) {
-        q("#incorrect").style.display = "unset";
-    }else {
-        // We are logged in!
-        // Make a cute sign in animation <3
+    // We are logged in!
+    // Make a cute sign in animation <3
 
-        // Forward to the calender
-        document.location = "../calender"
-    }
+    // Create some state-management login system
+
+    // Forward to calender js, and tell it to give the user a guide
+
+    // If we dont recieve our new account back something went wrong
 }

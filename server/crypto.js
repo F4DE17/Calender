@@ -1,4 +1,5 @@
-const public = `MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzZlixVDExDPkQnZprmtg
+
+const publicKey = `MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzZlixVDExDPkQnZprmtg
 EAoIYgRkovaryVmNoWTULObHtsVfngb8eYQAgZQ7vNPUusDJZ6lqZP795lMVgfoG
 ex7iXWOWLh6KfM8rU+/GSzcbqiRf/CNcRpQMNSINDeiSDTGHCljmsP3kmKU+L4z5
 plocyhWH5dQgch7sNQHtnS7vTydhOblvNCqjXbXlA3voKxOOeEZNyhGQRerP0Hza
@@ -6,7 +7,7 @@ UKaoH//5i30xsppI35bWvedRkH93Bd2jXBXHnF1QiGYV/2EP14Z9hehl3fx35A6d
 AripeSq8Bx+0uTSY+87jeWxqGI8leHn2BrgGOLmQEqL6unoCpiuUS0nrYY2XDlom
 /QIDAQAB`;
 
-const private = `MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDNmWLFUMTEM+RC
+const privateKey = `MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDNmWLFUMTEM+RC
 dmmua2AQCghiBGSi9qvJWY2hZNQs5se2xV+eBvx5hACBlDu809S6wMlnqWpk/v3m
 UxWB+gZ7HuJdY5YuHop8zytT78ZLNxuqJF/8I1xGlAw1Ig0N6JINMYcKWOaw/eSY
 pT4vjPmmWhzKFYfl1CByHuw1Ae2dLu9PJ2E5uW80KqNdteUDe+grE454Rk3KEZBF
@@ -32,3 +33,27 @@ tZhmXqbPwc/GbAML6qbtxhFUWp7DDRwjzH1YkiA49gGlc/+RpzvKPpeUYAjuKgKI
 yuE0sMscYZE7ew8AIpl3md0JhEKSdrV31CAD7vqbTZD3hPeg5tzdRFB4giYlr0ku
 3xFH2xrHj5ORQS0BuvggCZkdh7KiaxZr3xM5g94Gulaa1ulwINPa9Ef6ebA+/ifr
 GmpxnfkHE8bxwei0DVA337jA`;
+
+
+class Crypto {
+
+}
+
+
+// Generating keys
+
+// const { generateKeyPairSync } = require("crypto")
+
+// const { privateKey, publicKey } = generateKeyPairSync('rsa', {
+//     modulusLength: 2048,
+//     publicKeyEncoding: {
+//         type: 'spki',
+//         format: 'pem'
+//     },
+//     privateKeyEncoding: {
+//         type: 'pkcs8',
+//         format: 'pem'
+//     }
+// })
+
+module.exports = { Crypto, privateKey, publicKey}
