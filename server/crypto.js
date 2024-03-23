@@ -34,26 +34,55 @@ yuE0sMscYZE7ew8AIpl3md0JhEKSdrV31CAD7vqbTZD3hPeg5tzdRFB4giYlr0ku
 3xFH2xrHj5ORQS0BuvggCZkdh7KiaxZr3xM5g94Gulaa1ulwINPa9Ef6ebA+/ifr
 GmpxnfkHE8bxwei0DVA337jA`;
 
+const { createHash, timingSafeEqual } = require("crypto")
+
+const { generateKeyPairSync, scryptSync, randomBytes } = require("crypto")
+
+
 
 class Crypto {
+    static publicKey = publicKey;
+    static privateKey = privateKey;
 
+    static hash(input) {
+        return createHash("sha256").update(input).digest("hex");
+    }
+
+    static saltyhash(input, salt) {
+        if(!salt) {
+            salt = randomBytes(16).toString("hex");
+        }
+
+        const hashed = scryptSync(input, salt, 64).toString("hex");
+
+        return `${salt}:${hashed}`;
+    }
+
+    static saltyhashMatch(test, password) {
+        const [salt, key] = password.split(":");
+
+        const hashedBuffer = scryptSync(test, salt, 64);
+
+        const keyBuffer = Buffer.from(key, 'hex')
+        const match = timingSafeEqual(hashedBuffer, keyBuffer)
+        console.log(match)
+        return match;
+    }
+
+    static generateKeyPair() {
+        return { privateKey, publicKey } = generateKeyPairSync('rsa', {
+            modulusLength: 2048,
+            publicKeyEncoding: {
+                type: 'spki',
+                format: 'pem'
+            },
+            privateKeyEncoding: {
+                type: 'pkcs8',
+                format: 'pem'
+            }
+        })
+    }
 }
 
 
-// Generating keys
-
-// const { generateKeyPairSync } = require("crypto")
-
-// const { privateKey, publicKey } = generateKeyPairSync('rsa', {
-//     modulusLength: 2048,
-//     publicKeyEncoding: {
-//         type: 'spki',
-//         format: 'pem'
-//     },
-//     privateKeyEncoding: {
-//         type: 'pkcs8',
-//         format: 'pem'
-//     }
-// })
-
-module.exports = { Crypto, privateKey, publicKey}
+module.exports = { Crypto }

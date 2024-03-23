@@ -100,8 +100,11 @@ HAVING p.table = "Groups";
 -- @block
 INSERT INTO Users (email, password, firstname, lastname, group_id, premium)
 VALUE ("z", "z", "z", "z", 1, 1);
+
 -- @block
-INSERT INTO Calenders (user_id)
-VALUE (1)
+
+SELECT * FROM Users;
+-- RIGHT JOIN `Permissions` AS p ON p.auth_id = Users.permission_level
+-- HAVING Users.id = 13;
 -- @block
-SELECT * FROM permissions WHERE permissions.table = "Groups";
+DELETE FROM Users WHERE Users.id > 10;

@@ -1,13 +1,14 @@
 var email;
 
 async function password() {
-    let input = document.querySelector("#input > div > input[type=text]");
+    let password = document.querySelector("#input > div > input[type=text]");
     console.log(input.value)
-    // Make sure the password is correct
-    // Send request to the server to check if username is valid
-    let data = await post("/read", {event: "authorize", values: {password: input.value, email: email}});
+    
+
+    // Request server to login
+    let data = await Req.read("password", {password: password.value, email: email});
     log(data)
-    if(data?.status === 404) {
+    if(data?.status === 400) {
         q("#incorrect").style.display = "unset";
     }else {
         // We are logged in!
@@ -25,11 +26,11 @@ async function username() {
     // Should probably somehow clean input seems how rn we are passing native sql right to our db xD
     let input = document.querySelector("#input > div > input[type=text]");
     // Send request to the server to check if username is valid
-    let data = await post("/read", {sql: `SELECT email FROM user WHERE email = "${input.value}";`});
-    log(data)
-        // If it is valid, go to the next page
-    if(data.length > 0){
-        email = input.value;
+    let data = await Req.read("email", {email: input.value})
+
+    // If it is valid, go to the next input
+    if(data.email){
+        email = data.email;
         // Make incorect text go away bc they got one right :)
         q("#incorrect").style.display = "none";
         // Clear input

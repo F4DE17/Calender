@@ -29,7 +29,7 @@ class DB {
         let promise = new Promise((resolve, reject) => {
             pool.query(query, (err, result, fields) => {
                 if(err) {
-                    resolve(err)
+                    resolve({error: err})
                 }
                 resolve(result)
             })
@@ -110,10 +110,6 @@ class DB {
 
     // Delete
 }
-
-
-
-
 
 
 

@@ -7,27 +7,18 @@
 /*  TODO
     1. Make database actually good structurally
 */
+
+// Convenience variables
+
 const log = console.log
 
-// Make a request handler for different paths
-
-// Connect with database
-
-let { DB } = require("./database.js")
-
-async function queryUsers() {
-    let result = await DB.query("user")
-
-    console.log(result)
-}
-
-
-//queryUsers();
 
 
 // Serve our client with Express
 
 const express = require("express");
+
+
 
 // Initiate our express app
 const app = express();
@@ -49,10 +40,19 @@ const read = require("./requests/read.js")
 const update = require("./requests/update.js")
 const del = require("./requests/delete.js")
 
+// Path for the read() function executed in browser
 app.post("/read", read.execute)
 
+// Path for the create() function executed in browser
 app.post("/create", create.execute)
 
+// Path for the update() function executed in browser
 app.post("/update", update.execute)
 
+// Path for the delete() function executed in browser
 app.post("/delete", del.execute)
+
+
+const { Crypto } = require("./crypto.js");
+
+console.log(Crypto.saltyhash("Himom"))
