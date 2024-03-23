@@ -1,0 +1,28 @@
+:root {
+    /* Colors */
+    /* Theme colors */
+    --theme1: rgb(252, 80, 194);
+    --theme2: rgb(253, 38, 67);
+
+    /* Light theme */
+    --primary: #ffffff;
+    --accent: #3880DE;
+
+    --background: var(--primary);
+
+    --border: #E1E1E1;
+
+    --text: #202020;
+    --text-contrast: var(var(--primary));
+    --text-special: var(--accent);
+
+    /* Dark theme */
+    /* --primary: #1a1a1a;
+    --accent: #3880DE;
+
+    --border: #E1E1E1;
+
+    --text: #eeeeee;
+    --text-contrast: var(var(--primary));
+    --text-special: var(--accent); */
+}

@@ -1,3 +1,3 @@
 q("button").onclick = function() {
-    DB.read("users", {where: {id: 1}})
+    DB.read("users", row:{where: {id: 1}})
 }

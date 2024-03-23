@@ -27,7 +27,11 @@ module.exports = {
                 // First check and see if the permissions are valid
                 let permissions = await DB.permissions(data.user, data.values.column, data.values.row, {where: {id: data.user.id}})
 
-                console.log(permissions);
+                if(permissions.permission) {
+                    // Now we want to query the data
+                    let query = await DB.read(data.table, data.values.row)
+                    return response.json(query);
+                }
             }
         }
     }
