@@ -65,7 +65,6 @@ class Crypto {
 
         const keyBuffer = Buffer.from(key, 'hex')
         const match = timingSafeEqual(hashedBuffer, keyBuffer)
-        console.log(match)
         return match;
     }
 

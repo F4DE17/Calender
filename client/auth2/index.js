@@ -17,7 +17,7 @@ async function password() {
         // Create some state-management login system
 
         // Forward to the calender
-        document.location = "../calender"
+        document.location = "../calendar"
     }
 }
 

@@ -35,5 +35,5 @@ async function createAccount() {
 
     // Forward to calender js, and tell it to give the user a guide
     console.log(data)
-    document.location = "../calender";
+    document.location = "../calendar";
 }

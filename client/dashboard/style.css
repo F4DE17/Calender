@@ -1,0 +1,151 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
+
+
+:root {
+    --header-height: 60px;
+    --left-width: 275px;
+
+    --avatar-size: 150px;
+
+    --border: rgb(209, 207, 207);
+}
+
+body {
+    margin: 0;
+
+    font-family: Poppins;
+}
+
+
+header {
+    height: var(--header-height);
+    border-bottom: 1px solid var(--border);
+
+}
+header ul {
+    list-style: none;
+}
+header .container {
+    display: flex;
+
+    justify-content: space-between;
+    height: 100%;
+}
+
+header .container ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+header .container ul li {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+header #hamburger {
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+header .container .simple_logo {
+    padding-left: 20px;
+}
+header .container ul li #large_logo {
+    background: linear-gradient(to bottom, var(--theme1) 0%, var(--theme2) 100%);
+    background-clip: text;
+    color: transparent;
+
+    margin: 0;
+    margin-left: 20px;
+
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+
+#bottom {
+    width: 100%;
+    
+}
+
+#avatar {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+
+    border-radius: 50%;
+
+    background: linear-gradient(to bottom, var(--theme1) 0%, var(--theme2) 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#user_info {
+    padding: 50px;
+    height: 60vh;
+
+    max-width: 1000px;
+
+    display: flex;
+    gap: 30px;
+}
+#avatar {
+    box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.24);
+}
+
+#avatar h1 {
+    color: white;
+    font-weight: 800;
+    font-size: 4rem;
+    letter-spacing: 0.5rem;
+    -webkit-text-stroke: 2px black;
+}
+#name {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#h1-firstname, #h1-lastname {
+    font-size: 2rem;
+    margin: 0;
+    display: inline;
+    
+    text-shadow: 0px 10px 10px rgba(0,0,0, 0.3);
+}
+
+
+
+#edit_fields {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+}
+#edit_fields div {
+    flex-grow: 1;
+    width: 1fr;
+}
+#edit_fields div p {
+    color: var(--accent);
+    background-color: var(--primary);
+    position: relative;
+    top: 15px;
+    left: 10px;
+    display: inline;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    font-size: 1.3rem;
+}
+#edit_fields div input {
+    border: 2px solid var(--accent);
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1rem;
+    display: block;
+
+    width: 90%;
+}
